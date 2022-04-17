@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EtudiantController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
+
+Route::get('/create-etudiant', [EtudiantController::class, 'create'])->name('etudiant.create.form');
+Route::post('/store-etudiant', [EtudiantController::class, 'store'])->name('etudiant.store.form');

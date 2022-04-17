@@ -43,4 +43,15 @@ abstract class Personne extends Model
         return $this->morphOne(User::class, 'userable');
     }
 
+    public static function personneValidationRules()
+    {
+        return [
+            'name' => 'required|max:10',
+            'cin' => 'required',
+            'password' => 'required',
+            'email' => 'required|email',
+            'telephone' => 'required',
+        ];
+    }
+
 }

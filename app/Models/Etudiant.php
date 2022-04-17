@@ -9,6 +9,10 @@ class Etudiant extends Personne
 {
     use HasFactory;
 
+    protected $fillable = [
+        'cne',
+        'date_inscription',
+    ];
 
     public function filter()
     {
@@ -38,6 +42,16 @@ class Etudiant extends Personne
     public function notes()
     {
         $this->hasMany(Note::class);
+    }
+
+    public static function validationRules()
+    {
+        $etudiant_validation = [
+            'cne' => 'required|max:6',
+            'date_inscription' => 'required'
+        ];
+
+        return array_merge(parent::personneValidationRules(), $etudiant_validation);
     }
 
 }

@@ -9,15 +9,29 @@ abstract class Personne extends Model
 {
     use HasFactory;
 
+    protected $role = [];
+    
+    
+    public function setRole($role_name = "Guest", $role_code = "guest")
+    {
+        $this->role = [
+            'role_name' => $role_name,
+            'role_code' => $role_code
+        ];
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
     //Overriding the create method
     public static function create(array $attributes = [], array $user_extra_attributes = [])
     {
-        
         $model = static::query()->create($user_extra_attributes);
         
         if(!empty($attributes)){
             $model = $model->user()->create($attributes);
-            $model->setDefaultPermissions();
         }
         
         

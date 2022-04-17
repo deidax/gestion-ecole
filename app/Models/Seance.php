@@ -9,6 +9,8 @@ class Seance extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function etudiants()
     {
         return $this->belongsToMany(Etudiant::class);

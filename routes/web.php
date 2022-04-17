@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\ProfesseurController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/create-etudiant', [EtudiantController::class, 'create'])->name('etudiant.create.form');
-Route::post('/store-etudiant', [EtudiantController::class, 'store'])->name('etudiant.store.form');
+Route::get('/create-etudiant', [EtudiantController::class, 'create'])->name('etudiant.create.form')->middleware('auth');
+Route::post('/store-etudiant', [EtudiantController::class, 'store'])->name('etudiant.store.form')->middleware('auth');
+
+Route::get('/create-professeur', [ProfesseurController::class, 'create'])->name('professeur.create.form')->middleware('auth');
+Route::post('/store-professeur', [ProfesseurController::class, 'store'])->name('professeur.store.form')->middleware('auth');

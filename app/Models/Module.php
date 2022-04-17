@@ -9,6 +9,8 @@ class Module extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function semestre()
     {
         return $this->belongsTo(Semestre::class);

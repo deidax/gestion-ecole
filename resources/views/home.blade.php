@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{Auth::user()->name}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,9 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
+                    @if(Auth::user()->userable->getRole()['role_code'] == 'etudiant')
+                        <b>{{Auth::user()->userable->getRole()['role_name']}}</b> inscrit le {{Auth::user()->userable->date_inscription}}
+                    @else
+                        <b>{{Auth::user()->userable->getRole()['role_name']}}</b> affecter le {{Auth::user()->userable->date_affectation}}
+                    @endif
+                    </div>
             </div>
         </div>
     </div>

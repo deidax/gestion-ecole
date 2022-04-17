@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Etudiant;
+use App\Models\Filiere;
+use App\Models\Groupe;
+use App\Models\Module;
+use App\Models\Semestre;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class EtudiantController extends Controller
 {
@@ -24,8 +29,13 @@ class EtudiantController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('user.etudiant.create');
+    {   
+        $data['filiere'] = Filiere::all()->toArray();
+        $data['groupe'] = Groupe::all()->toArray();
+        $data['semestre'] = Semestre::all()->toArray();
+        $data['module'] = Module::all()->toArray();
+        
+        return view('user.etudiant.create', compact('data'));
     }
 
     /**
@@ -37,15 +47,21 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {
         $validationData = $request->validate(Etudiant::validationRules());
+        $validationData['password'] = Hash::make($validationData['password']);
         $user = new User();
-         // This will get all the fillable fields from the user model (the shared fields) -- Note: getFillable() is a Laravel method.
+        // This will get all the fillable fields from the user model (the shared fields) -- Note: getFillable() is a Laravel method.
         $shared_fields = $user->getFillable();
-          // Get the shared fields
+        // Get the shared fields
         $shared_fields_data = array_intersect_key($validationData, array_flip($shared_fields));
         // Get the extra fields with the model_name
         $extra_fields_data = array_diff_key($validationData, array_flip($shared_fields));
         
         Etudiant::create($shared_fields_data, $extra_fields_data);
+
+        unset($validationData['password']);
+        $etudiant = $validationData;
+
+        return view('user.etudiant.profil', compact('etudiant'));
     }
 
     /**

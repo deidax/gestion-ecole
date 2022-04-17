@@ -12,7 +12,17 @@ class Etudiant extends Personne
     protected $fillable = [
         'cne',
         'date_inscription',
+        'filiere_id',
+        'groupe_id',
+        'semestre_id',
+        'module_id'
     ];
+
+    public function __construct(array $attributes = array())
+    {   
+        parent::__construct($attributes);
+        $this->setRole('Etudiant', 'etudiant');
+    }
 
     public function filter()
     {
@@ -48,7 +58,11 @@ class Etudiant extends Personne
     {
         $etudiant_validation = [
             'cne' => 'required|max:6',
-            'date_inscription' => 'required'
+            'date_inscription' => 'required',
+            'filiere_id' => 'required',
+            'groupe_id' => 'required',
+            'semestre_id' => 'required',
+            'module_id' => 'required'
         ];
 
         return array_merge(parent::personneValidationRules(), $etudiant_validation);

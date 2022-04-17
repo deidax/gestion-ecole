@@ -9,6 +9,8 @@ class Semestre extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function etudiants()
     {
         return $this->hasMany(Etudiant::class);

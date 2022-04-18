@@ -26,8 +26,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-Route::get('/create-etudiant', [EtudiantController::class, 'create'])->name('etudiant.create.form')->middleware('auth');
-Route::post('/store-etudiant', [EtudiantController::class, 'store'])->name('etudiant.store.form')->middleware('auth');
+Route::get('/create-etudiant', [EtudiantController::class, 'create'])->name('etudiant.create.form')->middleware('auth')->middleware('isadmin');
+Route::post('/store-etudiant', [EtudiantController::class, 'store'])->name('etudiant.store.form')->middleware('auth')->middleware('isadmin');
 
-Route::get('/create-professeur', [ProfesseurController::class, 'create'])->name('professeur.create.form')->middleware('auth');
-Route::post('/store-professeur', [ProfesseurController::class, 'store'])->name('professeur.store.form')->middleware('auth');
+Route::get('/create-professeur', [ProfesseurController::class, 'create'])->name('professeur.create.form')->middleware('auth')->middleware('isadmin');
+Route::post('/store-professeur', [ProfesseurController::class, 'store'])->name('professeur.store.form')->middleware('auth')->middleware('isadmin');

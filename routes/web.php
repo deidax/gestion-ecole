@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\SeanceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,7 @@ Route::post('/store-etudiant', [EtudiantController::class, 'store'])->name('etud
 
 Route::get('/create-professeur', [ProfesseurController::class, 'create'])->name('professeur.create.form')->middleware('auth')->middleware('isadmin');
 Route::post('/store-professeur', [ProfesseurController::class, 'store'])->name('professeur.store.form')->middleware('auth')->middleware('isadmin');
+
+Route::get('/create-seance', [SeanceController::class, 'create'])->name('seance.create.form')->middleware('auth')->middleware('isadmin');
+Route::post('/store-seance', [SeanceController::class, 'store'])->name('seance.store.form')->middleware('auth')->middleware('isadmin');
+Route::get('/index-seance', [SeanceController::class, 'index'])->name('seance.index.form')->middleware('auth')->middleware('isadmin');

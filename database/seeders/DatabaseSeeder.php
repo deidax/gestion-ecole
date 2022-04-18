@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ElementModule;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfesseurSeeder::class);
         $this->call(EtudiantSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(ElementModuleSeeder::class);
     }
 }

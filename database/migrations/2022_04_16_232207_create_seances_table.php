@@ -17,7 +17,6 @@ class CreateSeancesTable extends Migration
     {
         Schema::create('seances', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Module::class);
             $table->foreignIdFor(ElementModule::class);
             $table->date('date');
             $table->integer('heur_debut');

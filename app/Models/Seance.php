@@ -16,13 +16,20 @@ class Seance extends Model
         return $this->belongsToMany(Etudiant::class);
     }
 
-    public function groupe()
-    {
-        return $this->belongsTo(Groupe::class);
-    }
 
     public function elementModule()
     {
         return $this->belongsTo(ElementModule::class);
+    }
+
+    public static function validationRules()
+    {
+        return [
+            'element_module_id' => 'required',
+            'date' => 'required',
+            'heur_debut' => 'required',
+            'heur_fin' => 'required',
+        ];
+
     }
 }

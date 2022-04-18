@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ElementModule;
 use App\Models\Seance;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,14 @@ class SeanceController extends Controller
     public function index()
     {
         //
+        $seances = Seance::all()->toArray();
+
+        $seances_data = array_map(function($value){
+            $value['element_module_name'] = ElementModule::find($value['element_module_id'])->nom_module;
+            return $value;
+        },$seances);
+
+        return view('seance.list', compact('seances_data'));
     }
 
     /**
@@ -24,7 +33,8 @@ class SeanceController extends Controller
      */
     public function create()
     {
-        //
+        $data['elementModule'] = ElementModule::all()->toArray();
+        return view('seance.create', compact('data'));
     }
 
     /**
@@ -36,6 +46,11 @@ class SeanceController extends Controller
     public function store(Request $request)
     {
         //
+        $validationData = $request->validate(Seance::validationRules());
+        Seance::create($validationData);
+
+
+        return redirect()->route('seance.index.form');
     }
 
     /**

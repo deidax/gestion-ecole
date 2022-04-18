@@ -52,9 +52,24 @@
                                 </li>
                             @endif
                         @else
+                            @if(Auth::user()->userable->getRole()['role_code'] == 'admin')
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('etudiant.create.form') }}">Creation Etudiant</a>
+                                    <a class="dropdown-item" href="{{ route('professeur.create.form') }}">Creation Professeur</a>
+                                    <a class="dropdown-item" href="{{ route('seance.create.form') }}">Creation Seance</a>
+                                    <a class="dropdown-item" href="{{ route('seance.index.form') }}">List Seances</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }}<b class="my-1">({{Auth::user()->userable->getRole()['role_code']}})</b>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

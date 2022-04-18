@@ -9,6 +9,8 @@ class ElementModule extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function seances()
     {
         return $this->hasMany(Seance::class);

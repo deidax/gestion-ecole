@@ -5,7 +5,7 @@
 @section('content')
 <div class="card uper">
   <div class="card-header">
-    Creation d'un etudiant
+    Creation d'un professeur
   </div>
   <div class="card-body">
     @if ($errors->any())

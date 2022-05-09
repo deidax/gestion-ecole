@@ -24,7 +24,7 @@ class Etudiant extends Personne
         $this->setRole('Etudiant', 'etudiant');
     }
 
-    public function filter()
+    public function filiere()
     {
         return $this->belongsTo(Filiere::class);
     }

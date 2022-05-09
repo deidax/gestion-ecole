@@ -17,6 +17,9 @@
       <th scope="col">CIN</th>
       <th scope="col">Telephone</th>
       <th scope="col">Email</th>
+      <th scope="col">Date inscription</th>
+      <th scope="col">Groupe</th>
+      <th scope="col">Filiere</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +31,9 @@
       <td>{{$etudiant->user['cin']}}</td>
       <td>{{$etudiant->user['telephone']}}</td>
       <td>{{$etudiant->user['email']}}</td>
+      <td>{{$etudiant->date_inscription}}</td>
+      <td>{{$etudiant->groupe->libelle}}</td>
+      <td>{{$etudiant->filiere->libelle}}</td>
     </tr>
   @endforeach
   </tbody>

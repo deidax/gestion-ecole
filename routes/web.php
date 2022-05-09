@@ -17,13 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
@@ -34,6 +34,8 @@ Route::get('/etudiant-seance-list', [EtudiantController::class, 'seanceList'])->
 
 Route::get('/create-professeur', [ProfesseurController::class, 'create'])->name('professeur.create.form')->middleware('auth')->middleware('isadmin');
 Route::post('/store-professeur', [ProfesseurController::class, 'store'])->name('professeur.store.form')->middleware('auth')->middleware('isadmin');
+Route::get('/create-ajouter-note', [ProfesseurController::class, 'ajouterNote'])->name('create.ajouter.note')->middleware('auth')->middleware('isprofesseur');
+Route::post('/ajouter-note', [ProfesseurController::class, 'ajouterNote'])->name('ajouter.note')->middleware('auth')->middleware('isprofesseur');
 
 Route::get('/create-seance', [SeanceController::class, 'create'])->name('seance.create.form')->middleware('auth')->middleware('isadmin');
 Route::post('/store-seance', [SeanceController::class, 'store'])->name('seance.store.form')->middleware('auth')->middleware('isadmin');

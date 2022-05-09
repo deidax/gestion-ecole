@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Note;
 use App\Models\Professeur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ProfesseurController extends Controller
@@ -98,5 +100,15 @@ class ProfesseurController extends Controller
     public function destroy(Professeur $professeur)
     {
         //
+    }
+
+    public function createAjouterNote()
+    {
+        // Note::create($request->all());
+    }
+
+    public function ajouterNote(Request $request)
+    {
+        Note::create($request->all());
     }
 }

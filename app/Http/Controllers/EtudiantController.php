@@ -49,14 +49,15 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {
         $validationData = $request->validate(Etudiant::validationRules());
+
         $validationData['password'] = Hash::make($validationData['password']);
         $user = new User();
         // This will get all the fillable fields from the user model (the shared fields) -- Note: getFillable() is a Laravel method.
         $shared_fields = $user->getFillable();
         // Get the shared fields
-        $shared_fields_data = array_intersect_key($validationData, array_flip($shared_fields));
+        $shared_fields_data = array_intersect_key($validationData, array_flip($shared_fields));///user
         // Get the extra fields with the model_name
-        $extra_fields_data = array_diff_key($validationData, array_flip($shared_fields));
+        $extra_fields_data = array_diff_key($validationData, array_flip($shared_fields));/// model
         
         Etudiant::create($shared_fields_data, $extra_fields_data);
 

@@ -16,6 +16,7 @@
       <th scope="col">Date</th>
       <th scope="col">Heur debut</th>
       <th scope="col">Heur fin</th>
+      <th scope="col">--</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,9 @@
       <td>{{$seance['date']}}</td>
       <td>{{$seance['heur_debut']}}</td>
       <td>{{$seance['heur_fin']}}</td>
+      <th scope="col">
+        <a href="{{ route('create.add.etudiants.seance', ['seance' => $seance['id']]) }}">Ajouter Etudiants</a>
+      </th>
     </tr>
   @endforeach
   </tbody>

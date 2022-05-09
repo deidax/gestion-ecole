@@ -63,7 +63,7 @@ abstract class Personne extends Model
             'name' => 'required|max:10',
             'cin' => 'required',
             'password' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
             'telephone' => 'required',
         ];
     }

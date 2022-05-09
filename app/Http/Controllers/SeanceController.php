@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ElementModule;
+use App\Models\Etudiant;
 use App\Models\Seance;
 use Illuminate\Http\Request;
 
@@ -96,5 +97,22 @@ class SeanceController extends Controller
     public function destroy(Seance $seance)
     {
         //
+    }
+
+    public function createAddEtudiantSeance(Seance $seance)
+    {
+        $etudiants = Etudiant::all();
+        $data['etudiants'] = $etudiants;
+        $data['seance'] = $seance;
+        $data['in_seance'] = $seance->etudiants->pluck('id')->toArray();
+        return view('seance.etudiants', compact('data'));
+    }
+
+    public function addEtudiantSeance(Request $request)
+    {
+        $seance = Seance::find($request->seance_id);
+        $seance->etudiants()->sync($request->etudiants);
+        
+        return redirect()->route('create.add.etudiants.seance', ['seance' => $request->seance_id])->with('success', 'Opération terminée avec succès');   ;
     }
 }

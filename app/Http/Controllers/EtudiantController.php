@@ -20,7 +20,8 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        //
+        $etudiants = Etudiant::all();
+        return view('user.etudiant.list', compact('etudiants'));
     }
 
     /**
@@ -108,4 +109,8 @@ class EtudiantController extends Controller
     {
         //
     }
+
+
+
+
 }

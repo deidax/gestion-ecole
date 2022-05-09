@@ -61,9 +61,9 @@
                                     <a class="dropdown-item" href="{{ route('etudiant.create.form') }}">Creation Etudiant</a>
                                     <a class="dropdown-item" href="{{ route('professeur.create.form') }}">Creation Professeur</a>
                                     <a class="dropdown-item" href="{{ route('seance.create.form') }}">Creation Seance</a>
-                                    <a class="dropdown-item" href="{{ route('seance.index.form') }}">List Seances</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="{{ route('etudiant.index.form') }}">List Etudiant</a>
+                                    <a class="dropdown-item" href="{{ route('seance.index.form') }}">List Seances</a>
                                     </div>
                                 </li>
                             @endif

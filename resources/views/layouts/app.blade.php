@@ -67,6 +67,16 @@
                                     </div>
                                 </li>
                             @endif
+                            @if(Auth::user()->userable->getRole()['role_code'] == 'etudiant')
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Actions
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('etudiant.seance.list') }}">Mes seances</a>
+                                    </div>
+                                </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}<b class="my-1">({{Auth::user()->userable->getRole()['role_code']}})</b>

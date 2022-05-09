@@ -9,6 +9,7 @@ use App\Models\Module;
 use App\Models\Semestre;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class EtudiantController extends Controller
@@ -108,6 +109,13 @@ class EtudiantController extends Controller
     public function destroy(Etudiant $etudiant)
     {
         //
+    }
+
+    public function seanceList()
+    {
+        $etudiant = Auth::user()->userable;
+        $seances_data = $etudiant->seances;
+        return view('user.etudiant.seances', compact('seances_data'));
     }
 
 
